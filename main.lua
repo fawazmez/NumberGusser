@@ -12,78 +12,31 @@
 local numberToGuessTextField = native.newTextField( display.contentCenterX - 500, display.contentCenterY - 100, 750, 140 )
 numberToGuessTextField.id = "length textField"
 
-local InstructionTextField = display.newText( "Pick A number between 1 and 6", display.contentCenterX - 200, display.contentCenterY - 400, native.systemFont, 95 )
+local instructionTextField = display.newText( "Pick A number between 1 and 6", display.contentCenterX - 200, display.contentCenterY - 400, native.systemFont, 95 )
 
 local calculateButton = display.newImageRect( "./assets/sprites/enterButton.png", 406, 157 )
 calculateButton.x = display.contentCenterX +700
 calculateButton.y = display.contentCenterY +500
 calculateButton.id = "calculate button"
 
-local function randomnumber( event )
+math.randomseed( os.time() )
+local randomNumber = math.random( 1,6 )
+print(randomNumber)
+
+local function calculateButtonTouch( event )
     -- this function calculates the subtotal,tax,and total
- 	math.randomseed( os.time() )
-	local randomNumber = math.random( 1,6 )
-    local numberUser = tonumber(numbertextfield)
-    local answer
+ 	local answer
 
-   if randomNumber == numberUser then
-    answer = display.newText( " Correct YOU GOT IT" ..randomNumber, 50, 50 ,20)
-   else
-   	answer = display.newText( " Wrong the number is" ..randomNumber, 511, 501 ,20)
-   end
+    local numberToGuess = tonumber( numberToGuessTextField.text )
+    
+   
+    if randomNumber == numberToGuess then
+        answer = display.newText( " Correct YOU GOT IT " .. randomNumber, 500, 500 , native.systemFont, 60)
+    else
+       answer = display.newText( " Wrong the number is " .. randomNumber, 300, 501, native.systemFont,60)
+    end
 
+    return true
 end
 
 calculateButton:addEventListener( "touch", calculateButtonTouch )
-
-
-
-
-
-
--- math.randomseed( os.time() )
-
-
--- io.write(numberToGuess)
-
--- io.write( "Pick a number from 1 to 6: " )
-
--- answer=io.read()
--- answerAsNumber = tonumber(answer)
-
--- if numberToGuess == answerAsNumber then
-    -- io.write( "Correct" )
--- end
-
--- io.write( "Program done." )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
